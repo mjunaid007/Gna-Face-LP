@@ -73,14 +73,14 @@ const Hero = () => {
         {/* Background Image with Overlay */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.pexels.com/photos/4173239/pexels-photo-4173239.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop"
+            src="/src/assets/image.png"
             alt="Medical background"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-[#031b4e]/50"></div>
+          <div className="absolute inset-0 bg-[#031b4e]/60"></div>
         </div>
 
-        {/* Content Container - Higher z-index */}
+        {/* Content Container */}
         <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[calc(100vh-8rem)]">
             
@@ -90,7 +90,10 @@ const Hero = () => {
                 ref={titleRef}
                 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white leading-[1.1] drop-shadow-lg"
               >
-                Rebuild. Restore.{' '}
+                Rebuild.{' '}
+                <span className="block">
+                  Restore.
+                </span>
                 <span className="block">
                   Renew.
                 </span>
