@@ -69,51 +69,40 @@ const Hero = () => {
 
   return (
     <>
-      <section id="home" ref={heroRef} className="relative min-h-screen pt-20 overflow-hidden">
-        {/* Background Image with Overlay */}
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="/src/assets/image copy.png"
-            alt="Cosmetic surgery background"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#031b4e]/80 via-[#031b4e]/60 to-transparent"></div>
-        </div>
-
-        {/* Content Container */}
-        <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <section id="home" ref={heroRef} className="min-h-screen pt-20 bg-gradient-to-br from-gray-50 to-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[calc(100vh-8rem)]">
             
             {/* Left Side - Content */}
-            <div className="space-y-8 relative z-30">
+            <div className="space-y-8">
               <h1 
                 ref={titleRef}
-                className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white leading-[1.1] drop-shadow-lg"
+                className="text-4xl md:text-5xl lg:text-6xl font-black text-[#031b4e] leading-tight"
               >
                 Rebuild.{' '}
                 <span className="block">
                   Restore.
                 </span>
-                <span className="block">
+                <span className="block text-[#165FAC]">
                   Renew.
                 </span>
               </h1>
               
               <p 
                 ref={subtitleRef}
-                className="text-lg md:text-xl lg:text-2xl text-blue-100 leading-relaxed font-medium max-w-2xl drop-shadow-md"
+                className="text-xl md:text-2xl text-gray-700 leading-relaxed font-medium max-w-2xl"
               >
                 World-Class Maxillofacial Surgery in Hyderabad
               </p>
 
-              <p className="text-base md:text-lg text-blue-200 leading-relaxed max-w-2xl drop-shadow-md">
+              <p className="text-lg text-gray-600 leading-relaxed max-w-2xl">
                 20+ years of excellence in TMJ, jaw correction, facial trauma, and aesthetic surgery.
               </p>
               
               <div ref={ctaRef} className="flex flex-col sm:flex-row gap-4 pt-4">
                 <button 
                   onClick={() => setIsFormOpen(true)}
-                  className="group bg-[#165FAC] hover:bg-blue-600 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 flex items-center justify-center gap-3 shadow-xl hover:shadow-2xl transform hover:-translate-y-1 z-30 relative"
+                  className="group bg-[#165FAC] hover:bg-[#031b4e] text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 flex items-center justify-center gap-3 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
                 >
                   Book an Appointment
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -121,7 +110,7 @@ const Hero = () => {
                 
                 <button 
                   onClick={() => scrollToSection('doctors')}
-                  className="group bg-transparent hover:bg-white/10 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 flex items-center justify-center gap-3 border-2 border-white/30 hover:border-white/50 transform hover:scale-105 z-30 relative"
+                  className="group bg-transparent hover:bg-gray-100 text-[#031b4e] px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 flex items-center justify-center gap-3 border-2 border-[#031b4e] hover:border-[#165FAC] transform hover:scale-105"
                 >
                   Meet Our Experts
                 </button>
@@ -129,11 +118,12 @@ const Hero = () => {
             </div>
             
             {/* Right Side - Contact Form */}
-            <div ref={formRef} className="flex justify-center lg:justify-end relative z-30">
-              <div className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md relative z-40">
+            <div ref={formRef} className="flex justify-center lg:justify-end">
+              <div className="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md border border-gray-100">
                 {/* Header */}
                 <div className="text-center mb-6">
                   <h2 className="text-2xl font-bold text-[#031b4e] mb-2">Book Your Appointment</h2>
+                  <p className="text-gray-600">Fill in your details and we'll get back to you soon</p>
                 </div>
                 
                 {/* Form */}
@@ -151,7 +141,7 @@ const Hero = () => {
                         value={formData.fullName}
                         onChange={handleChange}
                         required
-                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#165FAC] focus:border-transparent transition-all bg-white relative z-50"
+                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#165FAC] focus:border-transparent transition-all"
                         placeholder="Enter your full name"
                       />
                     </div>
@@ -170,7 +160,7 @@ const Hero = () => {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#165FAC] focus:border-transparent transition-all bg-white relative z-50"
+                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#165FAC] focus:border-transparent transition-all"
                         placeholder="Enter your email"
                       />
                     </div>
@@ -189,7 +179,7 @@ const Hero = () => {
                         value={formData.phone}
                         onChange={handleChange}
                         required
-                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#165FAC] focus:border-transparent transition-all bg-white relative z-50"
+                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#165FAC] focus:border-transparent transition-all"
                         placeholder="Enter your phone number"
                       />
                     </div>
@@ -197,20 +187,17 @@ const Hero = () => {
                   
                   <button
                     type="submit"
-                    className="w-full bg-[#031b4e] hover:bg-[#165FAC] text-white py-4 px-6 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center gap-2 transform hover:scale-105 shadow-lg hover:shadow-xl relative z-50"
+                    className="w-full bg-[#031b4e] hover:bg-[#165FAC] text-white py-4 px-6 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center gap-2 transform hover:scale-105 shadow-lg hover:shadow-xl"
                   >
                     Book Appointment
                   </button>
                 </form>
+                
+                <p className="text-xs text-gray-500 text-center mt-4">
+                  We respect your privacy and will never share your information.
+                </p>
               </div>
             </div>
-          </div>
-        </div>
-        
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-30">
-          <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-white/70 rounded-full mt-2 animate-pulse"></div>
           </div>
         </div>
       </section>
