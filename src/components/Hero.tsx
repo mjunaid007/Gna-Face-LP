@@ -1,13 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { ArrowRight, User, Mail, Phone } from 'lucide-react';
+import { ArrowRight, User, Mail, Phone, Send } from 'lucide-react';
 import { gsap } from 'gsap';
-import ContactForm from './ContactForm';
 
 const Hero = () => {
   const heroRef = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const subtitleRef = useRef<HTMLParagraphElement>(null);
-  const ctaRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
   const formRef = useRef<HTMLDivElement>(null);
   
   const [formData, setFormData] = useState({
@@ -15,35 +12,22 @@ const Hero = () => {
     email: '',
     phone: ''
   });
-  const [isFormOpen, setIsFormOpen] = useState(false);
 
   useEffect(() => {
     const tl = gsap.timeline();
     
-    tl.from(titleRef.current, {
-      x: -100,
+    tl.from(contentRef.current, {
+      x: -80,
       opacity: 0,
-      duration: 1.2,
+      duration: 1,
       ease: "power3.out"
     })
-    .from(subtitleRef.current, {
-      x: -50,
-      opacity: 0,
-      duration: 1,
-      ease: "power3.out"
-    }, "-=0.8")
-    .from(ctaRef.current, {
-      x: -30,
-      opacity: 0,
-      duration: 0.8,
-      ease: "power3.out"
-    }, "-=0.6")
     .from(formRef.current, {
-      x: 100,
+      x: 80,
       opacity: 0,
       duration: 1,
       ease: "power3.out"
-    }, "-=1");
+    }, "-=0.7");
   }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -68,72 +52,77 @@ const Hero = () => {
   };
 
   return (
-    <>
-      <section id="home" ref={heroRef} className="min-h-screen pt-20 bg-gradient-to-br from-gray-50 to-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[calc(100vh-8rem)]">
-            
-            {/* Left Side - Content */}
-            <div className="space-y-8">
-              <h1 
-                ref={titleRef}
-                className="text-4xl md:text-5xl lg:text-6xl font-black text-[#031b4e] leading-tight"
-              >
-                Rebuild.{' '}
-                <span className="block">
-                  Restore.
-                </span>
-                <span className="block text-[#165FAC]">
-                  Renew.
-                </span>
+    <section id="home" ref={heroRef} className="min-h-screen pt-20 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center min-h-[calc(100vh-12rem)]">
+          
+          {/* Left Side - Content */}
+          <div ref={contentRef} className="space-y-8">
+            <div className="space-y-4">
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-black leading-tight">
+                <span className="text-[#031b4e]">Rebuild.</span>
+                <br />
+                <span className="text-[#031b4e]">Restore.</span>
+                <br />
+                <span className="text-[#165FAC]">Renew.</span>
               </h1>
-              
-              <p 
-                ref={subtitleRef}
-                className="text-xl md:text-2xl text-gray-700 leading-relaxed font-medium max-w-2xl"
-              >
-                World-Class Maxillofacial Surgery in Hyderabad
-              </p>
-
-              <p className="text-lg text-gray-600 leading-relaxed max-w-2xl">
-                20+ years of excellence in TMJ, jaw correction, facial trauma, and aesthetic surgery.
-              </p>
-              
-              <div ref={ctaRef} className="flex flex-col sm:flex-row gap-4 pt-4">
-                <button 
-                  onClick={() => setIsFormOpen(true)}
-                  className="group bg-[#165FAC] hover:bg-[#031b4e] text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 flex items-center justify-center gap-3 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-                >
-                  Book an Appointment
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </button>
-                
-                <button 
-                  onClick={() => scrollToSection('doctors')}
-                  className="group bg-transparent hover:bg-gray-100 text-[#031b4e] px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 flex items-center justify-center gap-3 border-2 border-[#031b4e] hover:border-[#165FAC] transform hover:scale-105"
-                >
-                  Meet Our Experts
-                </button>
-              </div>
             </div>
             
-            {/* Right Side - Contact Form */}
-            <div ref={formRef} className="flex justify-center lg:justify-end">
-              <div className="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md border border-gray-100">
-                {/* Header */}
-                <div className="text-center mb-6">
-                  <h2 className="text-2xl font-bold text-[#031b4e] mb-2">Book Your Appointment</h2>
-                  <p className="text-gray-600">Fill in your details and we'll get back to you soon</p>
+            <div className="space-y-6">
+              <h2 className="text-2xl md:text-3xl font-bold text-[#031b4e]">
+                World-Class Maxillofacial Surgery in Hyderabad
+              </h2>
+              
+              <p className="text-lg text-gray-600 leading-relaxed max-w-xl">
+                Transform your life with 20+ years of excellence in TMJ disorders, 
+                jaw correction, facial trauma, and aesthetic surgery. Expert care 
+                with cutting-edge technology.
+              </p>
+            </div>
+            
+            <div className="flex flex-col sm:flex-row gap-4 pt-6">
+              <button 
+                onClick={() => scrollToSection('services')}
+                className="group bg-[#165FAC] hover:bg-[#031b4e] text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 flex items-center justify-center gap-3 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+              >
+                Explore Services
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </button>
+              
+              <button 
+                onClick={() => scrollToSection('doctors')}
+                className="group bg-transparent hover:bg-[#165FAC] hover:text-white text-[#165FAC] px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 flex items-center justify-center gap-3 border-2 border-[#165FAC] transform hover:scale-105"
+              >
+                Meet Our Experts
+              </button>
+            </div>
+          </div>
+          
+          {/* Right Side - Appointment Form */}
+          <div ref={formRef} className="flex justify-center lg:justify-end">
+            <div className="w-full max-w-md">
+              <div className="bg-gradient-to-br from-[#165FAC] to-[#031b4e] rounded-3xl p-8 shadow-2xl">
+                {/* Form Header */}
+                <div className="text-center mb-8">
+                  <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <User className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-2">
+                    Book Your Appointment
+                  </h3>
+                  <p className="text-blue-100">
+                    Start your transformation journey today
+                  </p>
                 </div>
                 
                 {/* Form */}
-                <form onSubmit={handleSubmit} className="space-y-5">
+                <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
-                    <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="fullName" className="block text-sm font-medium text-white mb-2">
                       Full Name *
                     </label>
                     <div className="relative">
-                      <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                      <User className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
                       <input
                         type="text"
                         id="fullName"
@@ -141,18 +130,18 @@ const Hero = () => {
                         value={formData.fullName}
                         onChange={handleChange}
                         required
-                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#165FAC] focus:border-transparent transition-all"
+                        className="w-full pl-12 pr-4 py-4 bg-white/95 border-0 rounded-xl focus:ring-2 focus:ring-white focus:bg-white transition-all placeholder-gray-500"
                         placeholder="Enter your full name"
                       />
                     </div>
                   </div>
                   
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="email" className="block text-sm font-medium text-white mb-2">
                       Email Address *
                     </label>
                     <div className="relative">
-                      <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                      <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
                       <input
                         type="email"
                         id="email"
@@ -160,18 +149,18 @@ const Hero = () => {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#165FAC] focus:border-transparent transition-all"
-                        placeholder="Enter your email"
+                        className="w-full pl-12 pr-4 py-4 bg-white/95 border-0 rounded-xl focus:ring-2 focus:ring-white focus:bg-white transition-all placeholder-gray-500"
+                        placeholder="Enter your email address"
                       />
                     </div>
                   </div>
                   
                   <div>
-                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="phone" className="block text-sm font-medium text-white mb-2">
                       Phone Number *
                     </label>
                     <div className="relative">
-                      <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                      <Phone className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
                       <input
                         type="tel"
                         id="phone"
@@ -179,7 +168,7 @@ const Hero = () => {
                         value={formData.phone}
                         onChange={handleChange}
                         required
-                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#165FAC] focus:border-transparent transition-all"
+                        className="w-full pl-12 pr-4 py-4 bg-white/95 border-0 rounded-xl focus:ring-2 focus:ring-white focus:bg-white transition-all placeholder-gray-500"
                         placeholder="Enter your phone number"
                       />
                     </div>
@@ -187,28 +176,24 @@ const Hero = () => {
                   
                   <button
                     type="submit"
-                    className="w-full bg-[#031b4e] hover:bg-[#165FAC] text-white py-4 px-6 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center gap-2 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                    className="w-full bg-white hover:bg-gray-100 text-[#031b4e] py-4 px-6 rounded-xl font-bold text-lg transition-all duration-300 flex items-center justify-center gap-3 shadow-lg hover:shadow-xl transform hover:scale-105"
                   >
-                    Book Appointment
+                    <Send className="w-5 h-5" />
+                    Book Appointment Now
                   </button>
                 </form>
                 
-                <p className="text-xs text-gray-500 text-center mt-4">
-                  We respect your privacy and will never share your information.
-                </p>
+                <div className="text-center mt-6">
+                  <p className="text-xs text-blue-100">
+                    🔒 Your information is secure and confidential
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </section>
-
-      {/* Contact Form Modal */}
-      <ContactForm 
-        isOpen={isFormOpen} 
-        onClose={() => setIsFormOpen(false)}
-        title="Book Your Appointment"
-      />
-    </>
+      </div>
+    </section>
   );
 };
 
